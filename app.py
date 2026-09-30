@@ -35,9 +35,7 @@ app = App(
     token=os.environ["SLACK_BOT_TOKEN"],
     process_before_response=True,
 )
-# ソケットモードハンドラーを使ってアプリを起動する
-if __name__ == "__main__":
-    SocketModeHandler(app, os.environ["SLACK_APP_TOKEN"]).start()
+
 
 class SlackStreamingCallbackHandler(BaseCallbackHandler):
     last_send_time = time.time()
@@ -150,8 +148,8 @@ app.event("app_mention")(ack=just_ack, lazy=[handle_mention])
 # ソケットモードハンドラーを使ってアプリを起動します
 if __name__ == "__main__":
     SocketModeHandler(app, os.environ["SLACK_APP_TOKEN"]).start()
-
-
+    
+# ソケットモードハンドラーを使ってアプリを起動する
 def handler(event, context):
     logger.info("handler called")
     header = event["headers"]
